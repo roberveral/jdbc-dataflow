@@ -44,6 +44,21 @@ public class JdbcIO {
     }
 
     /**
+     * Returns a {@link Sink} builder configured with the given parameters
+     * @param connectionString jdbc connection string.
+     * @param driver database driver name
+     * @param user username to access the database
+     * @param password password to access the database
+     * @param tableName name to insert into
+     * @param fieldNames map of key-value pairs with a column name and a {@link ColumnType} associated (for creating
+     *                   the table if not exists)
+     * @return a {@link Sink} object.
+     */
+    public static Sink sink(String connectionString, String driver, String user, String password, String tableName, Map<String, ColumnType> fieldNames) {
+        return new Sink(connectionString, driver, user, password, tableName, fieldNames);
+    }
+
+    /**
      * Class that represents a row in a JDBC query.
      * It allows to get all the fields by the column index.
      *
